@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="pxButton">#0099e5</color>
+    <color name="error">#F44336</color>
+    <color name="background">#ff303030</color>
+</resources>

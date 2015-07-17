@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yksong.px.view.DrawerHeaderView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_header"
+    android:layout_width="match_parent"
+    android:layout_height="170dp"
+    android:background="@color/background_material_dark">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:id="@+id/cover"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="?attr/listPreferredItemPaddingLeft">
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/listPreferredItemHeightSmall"
+            android:layout_alignParentBottom="true"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:paddingTop="@dimen/navigation_separator_vertical_padding"/>
+
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_above="@id/username"
+            android:paddingBottom="@dimen/navigation_separator_vertical_padding" />
+    </RelativeLayout>
+
+
+</com.yksong.px.view.DrawerHeaderView>

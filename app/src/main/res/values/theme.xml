@@ -1,0 +1,20 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppThemeBase" parent="Theme.AppCompat">
+        <item name="windowActionBarOverlay">true</item>
+        <item name="actionBarStyle">@style/ActionBarStyle</item>
+    </style>
+
+    <style name="AppTheme" parent="AppThemeBase">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="StartThemeBase" parent="Theme.AppCompat">
+        <item name="colorButtonNormal">@color/pxButton</item>
+    </style>
+
+    <style name="StartTheme" parent="StartThemeBase">
+    </style>
+
+</resources>
