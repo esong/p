@@ -2,10 +2,12 @@ package com.yksong.px.view;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.LinearLayoutManager;
@@ -60,6 +62,7 @@ public class PhotoListView extends LinearLayout {
         PxApp.getLoginComponent(context).inject(this);
         mPresenter.takeView(this);
 
+        // Floating Button
         SubActionButton.Builder buttonBuilder =
                 new SubActionButton.Builder((Activity)getContext());
 
@@ -94,6 +97,10 @@ public class PhotoListView extends LinearLayout {
                         .build();
     }
 
+    public void onListChange(int listId) {
+        mPresenter.request(listId);
+    }
+
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
@@ -113,7 +120,11 @@ public class PhotoListView extends LinearLayout {
         });
 
         mPhotoView.setItemViewCacheSize(5);
-        mPresenter.request();
+
+        SharedPreferences preferences = getContext()
+                .getSharedPreferences(MainContainer.PX_PREFERENCE, 0);
+        mPresenter.request(preferences
+                .getInt(MainContainer.PX_PREFERENCE_NAVI_ITEM, R.id.navigation_popular));
 
         final GestureDetectorCompat detector = new GestureDetectorCompat(
                 getContext(), new GestureDetector.SimpleOnGestureListener(){

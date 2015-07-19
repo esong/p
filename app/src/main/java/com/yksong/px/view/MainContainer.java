@@ -2,6 +2,7 @@ package com.yksong.px.view;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.view.GravityCompat;
@@ -30,9 +31,13 @@ import butterknife.InjectView;
  */
 public class MainContainer extends FrameLayout implements Container {
     @InjectView(R.id.toolbar) Toolbar mToolBar;
+    @InjectView(R.id.photo_list) PhotoListView mPhotoList;
 
     @Inject NavigationView mNavigationView;
     @Inject DrawerLayout mDrawerLayout;
+
+    public static String PX_PREFERENCE = "PX_PREFERENCE";
+    public static String PX_PREFERENCE_NAVI_ITEM = "PX_PREFERENCE_NAVI_ITEM";
 
     public MainContainer(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -54,11 +59,18 @@ public class MainContainer extends FrameLayout implements Container {
 
         mNavigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        return false;
-                    }
-                });
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                int menuId = menuItem.getItemId();
+                SharedPreferences preferences = getContext().getSharedPreferences(PX_PREFERENCE, 0);
+                preferences.edit()
+                        .putInt(PX_PREFERENCE_NAVI_ITEM, menuId)
+                        .apply();
+                mDrawerLayout.closeDrawer(GravityCompat.START);
+                mPhotoList.onListChange(menuId);
+                return true;
+            }
+        });
     }
 
     public int getStatusBarHeight() {
