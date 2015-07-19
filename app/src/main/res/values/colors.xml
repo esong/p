@@ -3,4 +3,6 @@
     <color name="pxButton">#0099e5</color>
     <color name="error">#F44336</color>
     <color name="background">#ff303030</color>
+    <color name="gradient_white">#70ffffff</color>
+    <color name="gradient_black">#80000000</color>
 </resources>
