@@ -1,6 +1,7 @@
 package com.yksong.px;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -11,9 +12,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.yksong.px.app.AccountManager;
+import com.yksong.px.app.PxApp;
 import com.yksong.px.component.DaggerMainActivityComponent;
 import com.yksong.px.component.MainActivityComponent;
 import com.yksong.px.component.MainActivityModule;
+
+import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -23,6 +28,8 @@ public class MainActivity extends Activity {
     @InjectView(R.id.main_drawer_layout) DrawerLayout mDrawerLayout;
     @InjectView(R.id.main_navigation) NavigationView mNavigationView;
     @InjectView(R.id.main_content) ViewGroup mMainContent;
+
+    @Inject AccountManager mAccountManager;
 
     private MainActivityComponent mComponent;
 
@@ -34,6 +41,7 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
+        PxApp.getAppComponent(this).inject(this);
 
         mComponent = DaggerMainActivityComponent.builder()
                 .mainActivityModule(new MainActivityModule(this))
@@ -83,6 +91,12 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void logout() {
+        mAccountManager.logout();
+        startActivity(new Intent(this, StartActivity.class)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
     }
 
     public DrawerLayout getDrawerLayout() {

@@ -3,7 +3,6 @@ package com.yksong.px.app;
 import android.app.Application;
 import android.content.Context;
 
-import com.squareup.picasso.Picasso;
 import com.yksong.px.BuildConfig;
 import com.yksong.px.component.AppComponent;
 import com.yksong.px.component.AppModule;

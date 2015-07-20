@@ -37,11 +37,16 @@
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:minWidth="250dp"
                     android:id="@+id/email_username"
-                    android:hint="@string/email_username"/>
+                    android:hint="@string/email_username"
+                    android:imeOptions="actionNext"
+                    android:maxLines="1"
+                    android:inputType="text"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:minWidth="250dp"
                     android:id="@+id/password"
                     android:inputType="textPassword"
                     android:hint="@string/password"/>

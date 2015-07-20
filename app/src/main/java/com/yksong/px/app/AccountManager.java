@@ -6,16 +6,16 @@ import android.content.SharedPreferences;
 
 import com.fivehundredpx.api.auth.AccessToken;
 
+import javax.inject.Inject;
+
 /**
  * Created by esong on 2015-05-25.
  */
 public class AccountManager {
-    private final Application mApp;
     private final SharedPreferences mPreference;
     private AccessToken mAccessToken = null;
 
     public AccountManager(Application app) {
-        mApp = app;
         mPreference = app.getSharedPreferences(Preferences.PREFERENCE_NAME, Context.MODE_PRIVATE);
     }
 
@@ -33,6 +33,14 @@ public class AccountManager {
         SharedPreferences.Editor editor = mPreference.edit();
         editor.putString(Preferences.PREF_ACCESS_TOKEN, token.getToken());
         editor.putString(Preferences.PREF_TOKEN_SECRET, token.getTokenSecret());
-        editor.commit();
+        editor.apply();
+    }
+
+    public void logout() {
+        mPreference.edit()
+                .remove(Preferences.PREF_ACCESS_TOKEN)
+                .remove(Preferences.PREF_TOKEN_SECRET)
+                .apply();
+        mAccessToken = null;
     }
 }

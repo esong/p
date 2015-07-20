@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.fivehundredpx.api.FiveHundredException;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.yksong.px.R;
@@ -152,7 +153,16 @@ public class LoginView extends FrameLayout {
     }
 
     public void loginFailed(Throwable e) {
-        displayLoginError(e.getMessage());
+        String message = "Login Error";
+        if (e instanceof FiveHundredException) {
+            int statusCode = ((FiveHundredException) e).getStatusCode();
+            switch (statusCode) {
+                case 403: {
+                   message = getResources().getString(R.string.incorrectPass);
+                }
+            }
+        }
+        displayLoginError(message);
         mLoginButton.setVisibility(VISIBLE);
         mLoginProgress.setVisibility(GONE);
     }

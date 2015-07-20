@@ -31,6 +31,7 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 import com.yksong.px.R;
+import com.yksong.px.app.Preferences;
 import com.yksong.px.app.PxApp;
 import com.yksong.px.model.Photo;
 import com.yksong.px.presenter.PhotoPresenter;
@@ -122,9 +123,9 @@ public class PhotoListView extends LinearLayout {
         mPhotoView.setItemViewCacheSize(5);
 
         SharedPreferences preferences = getContext()
-                .getSharedPreferences(MainContainer.PX_PREFERENCE, 0);
+                .getSharedPreferences(Preferences.PREFERENCE_NAME, 0);
         mPresenter.request(preferences
-                .getInt(MainContainer.PX_PREFERENCE_NAVI_ITEM, R.id.navigation_popular));
+                .getInt(Preferences.MENU_PREFERENCE_NAVI_ITEM, R.id.navigation_popular));
 
         final GestureDetectorCompat detector = new GestureDetectorCompat(
                 getContext(), new GestureDetector.SimpleOnGestureListener(){

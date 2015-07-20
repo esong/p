@@ -7,4 +7,6 @@ public class Preferences {
     public static String PREFERENCE_NAME = "PxPref";
     public static String PREF_ACCESS_TOKEN = "PREF_ACCESS_TOKEN";
     public static String PREF_TOKEN_SECRET = "PREF_TOKEN_SECRET";
+
+    public static String MENU_PREFERENCE_NAVI_ITEM = "PX_PREFERENCE_NAVI_ITEM";
 }

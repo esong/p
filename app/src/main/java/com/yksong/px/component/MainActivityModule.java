@@ -22,13 +22,13 @@ public class MainActivityModule {
     }
 
     @Provides
-    @Singleton
+    @ActivityScope
     DrawerLayout getDrawerLayout() {
         return mActivity.getDrawerLayout();
     }
 
     @Provides
-    @Singleton
+    @ActivityScope
     NavigationView getNavigationView() {
         return mActivity.getNavigationView();
     }

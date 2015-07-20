@@ -3,9 +3,11 @@ package com.yksong.px.component;
 import android.app.Application;
 
 import com.yksong.px.app.AccountManager;
+import com.yksong.px.view.LoginView;
 
 import javax.inject.Singleton;
 
+import dagger.Component;
 import dagger.Module;
 import dagger.Provides;
 
@@ -20,6 +22,12 @@ public class AppModule {
     public AppModule(Application app) {
         mApp = app;
         mAccountManager = new AccountManager(mApp);
+    }
+
+    @Provides
+    @Singleton
+    Application getApplication() {
+        return mApp;
     }
 
     @Provides

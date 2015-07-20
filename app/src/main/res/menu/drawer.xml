@@ -14,4 +14,17 @@
             android:id="@+id/navigation_fresh"
             android:title="@string/fresh"/>
     </group>
+
+    <group>
+        <item
+            android:id="@+id/navigation_subheader"
+            android:title="@string/settings">
+            <menu>
+                <item
+                    android:id="@+id/logout"
+                    android:title="@string/logout"/>
+            </menu>
+        </item>
+    </group>
+
 </menu>
